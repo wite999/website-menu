@@ -3,36 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="現代化企業網站導航選單">
-    <meta name="theme-color" content="#007bff">
-    <title>企業網站選單 - 優化版本</title>
+    <meta name="description" content="企業網站導航選單">
+    <title>企業網站選單</title>
     <style>
         :root {
             --primary-color: #007bff;
-            --primary-hover: #0056b3;
             --text-color: #333;
-            --text-light: #666;
-            --bg-color: #f8f9fa;
+            --bg-color: #f0f2f5;
             --white: #ffffff;
-            --shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --spacing: 1rem;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: system-ui, -apple-system, Arial, sans-serif;
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             min-height: 100vh;
             background: var(--bg-color);
             line-height: 1.6;
-            color: var(--text-color);
         }
 
         nav {
@@ -42,17 +35,12 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: var(--transition);
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--spacing);
+            padding: 0 20px;
             width: 100%;
         }
 
@@ -64,23 +52,15 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: bold;
             color: var(--text-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo:hover {
-            color: var(--primary-color);
         }
 
         .menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 30px;
         }
 
         .menu-item {
@@ -90,125 +70,79 @@
         .menu-link {
             text-decoration: none;
             color: var(--text-color);
-            font-size: 1rem;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+            font-size: 16px;
+            padding: 10px;
+            display: block;
             transition: var(--transition);
-            font-weight: 500;
         }
 
         .menu-link:hover,
         .menu-link:focus {
             color: var(--primary-color);
-        }
-
-        .menu-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: var(--transition);
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-        }
-
-        .menu-link:hover::after,
-        .menu-link:focus::after {
-            width: 100%;
+            outline: none;
         }
 
         .dropdown {
             position: absolute;
-            top: calc(100% + 0.5rem);
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
+            top: 100%;
+            left: 0;
             background: var(--white);
             box-shadow: var(--shadow);
-            border-radius: 8px;
-            min-width: 220px;
+            min-width: 200px;
+            display: none;
+            border-radius: 4px;
             opacity: 0;
-            visibility: hidden;
+            transform: translateY(-10px);
             transition: var(--transition);
-            padding: 0.5rem;
         }
 
         .menu-item:hover .dropdown,
         .menu-item:focus-within .dropdown {
+            display: block;
             opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0);
         }
 
         .dropdown-item {
-            padding: 0.75rem 1rem;
+            padding: 10px;
             display: block;
             text-decoration: none;
             color: var(--text-color);
             transition: var(--transition);
-            border-radius: 4px;
-            font-weight: 500;
         }
 
         .dropdown-item:hover,
         .dropdown-item:focus {
-            background-color: var(--bg-color);
+            background-color: #f8f9fa;
             color: var(--primary-color);
+            outline: none;
         }
 
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            padding: 0.5rem;
-            color: var(--text-color);
+            font-size: 24px;
             cursor: pointer;
-            transition: var(--transition);
+            padding: 10px;
+            color: var(--text-color);
         }
 
-        .mobile-menu-btn:hover {
+        .mobile-menu-btn:hover,
+        .mobile-menu-btn:focus {
             color: var(--primary-color);
-        }
-
-        .mobile-menu-icon {
-            width: 24px;
-            height: 24px;
-            position: relative;
-        }
-
-        .mobile-menu-icon span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: currentColor;
-            margin: 5px 0;
-            transition: var(--transition);
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+            outline: none;
         }
 
         main {
             margin-top: 90px;
-            padding: var(--spacing);
+            padding: 20px;
         }
 
         .content {
             background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 8px;
             box-shadow: var(--shadow);
         }
 
@@ -227,7 +161,6 @@
                 flex-direction: column;
                 gap: 0;
                 box-shadow: var(--shadow);
-                padding: 1rem;
             }
 
             .menu.active {
@@ -239,32 +172,20 @@
             }
 
             .menu-link {
-                padding: 1rem;
-                justify-content: space-between;
-            }
-
-            .menu-link::after {
-                display: none;
+                padding: 15px 20px;
             }
 
             .dropdown {
                 position: static;
-                transform: none;
                 box-shadow: none;
+                display: none;
+                background: #f8f9fa;
                 opacity: 1;
-                visibility: hidden;
-                max-height: 0;
-                overflow: hidden;
-                padding: 0 1rem;
+                transform: none;
             }
 
             .menu-item.active .dropdown {
-                visibility: visible;
-                max-height: 1000px;
-            }
-
-            .dropdown-item {
-                padding: 0.75rem;
+                display: block;
             }
         }
     </style>
@@ -273,49 +194,35 @@
     <nav>
         <div class="container">
             <div class="nav-content">
-                <a href="#" class="logo" aria-label="回到首頁">
-                    企業網站
-                </a>
-                <button class="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false">
-                    <div class="mobile-menu-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
-                <ul class="menu" role="menubar">
-                    <li class="menu-item" role="none">
-                        <a href="#" class="menu-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
-                            關於我們
-                        </a>
-                        <div class="dropdown" role="menu">
-                            <a href="#" class="dropdown-item" role="menuitem">公司簡介</a>
-                            <a href="#" class="dropdown-item" role="menuitem">企業文化</a>
-                            <a href="#" class="dropdown-item" role="menuitem">發展歷程</a>
+                <div class="logo" role="banner">企業網站</div>
+                <button class="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false">☰</button>
+                <ul class="menu" role="navigation">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link" aria-haspopup="true" aria-expanded="false">關於我們</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item">公司簡介</a>
+                            <a href="#" class="dropdown-item">企業文化</a>
+                            <a href="#" class="dropdown-item">發展歷程</a>
                         </div>
                     </li>
-                    <li class="menu-item" role="none">
-                        <a href="#" class="menu-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
-                            產品服務
-                        </a>
-                        <div class="dropdown" role="menu">
-                            <a href="#" class="dropdown-item" role="menuitem">產品類別一</a>
-                            <a href="#" class="dropdown-item" role="menuitem">產品類別二</a>
-                            <a href="#" class="dropdown-item" role="menuitem">產品類別三</a>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link" aria-haspopup="true" aria-expanded="false">產品服務</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item">產品類別一</a>
+                            <a href="#" class="dropdown-item">產品類別二</a>
+                            <a href="#" class="dropdown-item">產品類別三</a>
                         </div>
                     </li>
-                    <li class="menu-item" role="none">
-                        <a href="#" class="menu-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
-                            新聞中心
-                        </a>
-                        <div class="dropdown" role="menu">
-                            <a href="#" class="dropdown-item" role="menuitem">公司新聞</a>
-                            <a href="#" class="dropdown-item" role="menuitem">產業資訊</a>
-                            <a href="#" class="dropdown-item" role="menuitem">活動公告</a>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link" aria-haspopup="true" aria-expanded="false">新聞中心</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-item">公司新聞</a>
+                            <a href="#" class="dropdown-item">產業資訊</a>
+                            <a href="#" class="dropdown-item">活動公告</a>
                         </div>
                     </li>
-                    <li class="menu-item" role="none">
-                        <a href="#" class="menu-link" role="menuitem">聯絡我們</a>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">聯絡我們</a>
                     </li>
                 </ul>
             </div>
@@ -326,39 +233,23 @@
         <div class="container">
             <div class="content">
                 <h1>歡迎來到我們的網站</h1>
-                <p>這是一個現代化的響應式企業網站選單示例，具備完整的無障礙支援與動畫效果。</p>
+                <p>這是一個響應式企業網站選單示例，包含下拉式選單功能。</p>
             </div>
         </div>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const nav = document.querySelector('nav');
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const menu = document.querySelector('.menu');
             const menuItems = document.querySelectorAll('.menu-item');
 
-            // 處理滾動效果
-            let lastScroll = 0;
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > lastScroll && currentScroll > 100) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-                lastScroll = currentScroll;
-            });
-
-            // 處理選單開關
             function toggleMenu() {
                 const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
                 mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-                mobileMenuBtn.classList.toggle('active');
                 menu.classList.toggle('active');
             }
 
-            // 處理子選單
             function handleMenuItemClick(e) {
                 if (window.innerWidth <= 768) {
                     const menuItem = e.currentTarget;
@@ -367,18 +258,6 @@
                     
                     if (dropdown && e.target === menuLink) {
                         e.preventDefault();
-                        
-                        // 關閉其他打開的子選單
-                        menuItems.forEach(item => {
-                            if (item !== menuItem) {
-                                item.classList.remove('active');
-                                const link = item.querySelector('.menu-link');
-                                if (link.hasAttribute('aria-expanded')) {
-                                    link.setAttribute('aria-expanded', 'false');
-                                }
-                            }
-                        });
-
                         menuItem.classList.toggle('active');
                         const isExpanded = menuLink.getAttribute('aria-expanded') === 'true';
                         menuLink.setAttribute('aria-expanded', !isExpanded);
@@ -386,60 +265,23 @@
                 }
             }
 
-            // 添加事件監聽器
             mobileMenuBtn.addEventListener('click', toggleMenu);
+            
             menuItems.forEach(item => {
                 item.addEventListener('click', handleMenuItemClick);
             });
 
-            // 處理鍵盤導航
+            // 添加鍵盤支援
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    // 關閉所有選單
                     menu.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
                     mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    
                     menuItems.forEach(item => {
-                        item.classList.remove('active');
                         const menuLink = item.querySelector('.menu-link');
                         if (menuLink.hasAttribute('aria-expanded')) {
                             menuLink.setAttribute('aria-expanded', 'false');
                         }
-                    });
-                }
-            });
-
-            // 處理點擊外部關閉選單
-            document.addEventListener('click', function(e) {
-                if (!nav.contains(e.target)) {
-                    menu.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    
-                    menuItems.forEach(item => {
                         item.classList.remove('active');
-                        const menuLink = item.querySelector('.menu-link');
-                        if (menuLink.hasAttribute('aria-expanded')) {
-                            menuLink.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
-            });
-
-            // 處理視窗大小改變
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    menu.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    
-                    menuItems.forEach(item => {
-                        item.classList.remove('active');
-                        const menuLink = item.querySelector('.menu-link');
-                        if (menuLink.hasAttribute('aria-expanded')) {
-                            menuLink.setAttribute('aria-expanded', 'false');
-                        }
                     });
                 }
             });
