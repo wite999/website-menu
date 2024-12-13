@@ -3,217 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="現代化企業網站導航選單">
     <title>企業網站選單</title>
     <style>
-        :root {
-            --primary-color: #007bff;
-            --text-color: #333;
-            --bg-color: #f0f2f5;
-            --white: #ffffff;
-            --shadow: 0 2px 4px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, Arial, sans-serif;
         }
-
+        
         body {
-            min-height: 100vh;
-            background: var(--bg-color);
+            font-family: Arial, sans-serif;
             line-height: 1.6;
+            background-color: #f5f5f5;
         }
-
-        nav {
-            background: var(--white);
-            box-shadow: var(--shadow);
+        
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
+            padding: 0 15px;
         }
-
-        .nav-content {
+        
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 70px;
         }
-
+        
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: var(--text-color);
+            color: #333;
         }
-
-        .menu {
+        
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 30px;
         }
-
-        .menu-item {
+        
+        .nav-item {
             position: relative;
+            margin-left: 30px;
         }
-
-        .menu-link {
+        
+        .nav-link {
+            color: #333;
             text-decoration: none;
-            color: var(--text-color);
-            font-size: 16px;
-            padding: 10px;
+            padding: 25px 0;
             display: block;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
-
-        .menu-link:hover,
-        .menu-link:focus {
-            color: var(--primary-color);
+        
+        .nav-link:hover {
+            color: #007bff;
         }
-
+        
         .dropdown {
             position: absolute;
             top: 100%;
             left: 0;
-            background: var(--white);
-            box-shadow: var(--shadow);
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             min-width: 200px;
             display: none;
             border-radius: 4px;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: var(--transition);
         }
-
-        .menu-item:hover .dropdown,
-        .menu-item:focus-within .dropdown {
+        
+        .nav-item:hover .dropdown {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
-
-        .dropdown-item {
-            padding: 10px;
-            display: block;
+        
+        .dropdown-link {
+            color: #333;
+            padding: 12px 20px;
             text-decoration: none;
-            color: var(--text-color);
-            transition: var(--transition);
+            display: block;
+            transition: background-color 0.3s;
         }
-
-        .dropdown-item:hover,
-        .dropdown-item:focus {
+        
+        .dropdown-link:hover {
             background-color: #f8f9fa;
-            color: var(--primary-color);
+            color: #007bff;
         }
-
-        .mobile-menu-btn {
+        
+        .hamburger {
             display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
             cursor: pointer;
+            border: none;
+            background: none;
             padding: 10px;
         }
-
+        
+        .hamburger-line {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: transform 0.3s;
+        }
+        
         main {
             margin-top: 90px;
-            padding: 20px;
+            padding: 20px 0;
         }
-
+        
         .content {
-            background: var(--white);
+            background-color: #fff;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
+        
         @media (max-width: 768px) {
-            .mobile-menu-btn {
+            .hamburger {
                 display: block;
             }
-
-            .menu {
+            
+            .nav-menu {
                 display: none;
                 position: absolute;
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                gap: 0;
-                box-shadow: var(--shadow);
+                background-color: #fff;
+                padding: 20px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
-
-            .menu.active {
+            
+            .nav-menu.active {
                 display: block;
             }
-
-            .menu-item {
-                width: 100%;
+            
+            .nav-item {
+                margin: 0;
             }
-
-            .menu-link {
+            
+            .nav-link {
                 padding: 15px 20px;
             }
-
+            
             .dropdown {
                 position: static;
                 box-shadow: none;
-                display: none;
-                background: #f8f9fa;
-                opacity: 1;
-                transform: none;
+                background-color: #f8f9fa;
             }
-
-            .menu-item.active .dropdown {
-                display: block;
+            
+            .dropdown-link {
+                padding-left: 40px;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <div class="container">
-            <div class="nav-content">
+            <div class="nav-container">
                 <div class="logo">企業網站</div>
-                <button class="mobile-menu-btn" aria-label="開啟選單">☰</button>
-                <ul class="menu">
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">關於我們</a>
+                <button class="hamburger" aria-label="選單">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">關於我們</a>
                         <div class="dropdown">
-                            <a href="#" class="dropdown-item">公司簡介</a>
-                            <a href="#" class="dropdown-item">企業文化</a>
-                            <a href="#" class="dropdown-item">發展歷程</a>
+                            <a href="#" class="dropdown-link">公司簡介</a>
+                            <a href="#" class="dropdown-link">企業文化</a>
+                            <a href="#" class="dropdown-link">發展歷程</a>
                         </div>
                     </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">產品服務</a>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">產品服務</a>
                         <div class="dropdown">
-                            <a href="#" class="dropdown-item">產品類別一</a>
-                            <a href="#" class="dropdown-item">產品類別二</a>
-                            <a href="#" class="dropdown-item">產品類別三</a>
+                            <a href="#" class="dropdown-link">產品類別一</a>
+                            <a href="#" class="dropdown-link">產品類別二</a>
+                            <a href="#" class="dropdown-link">產品類別三</a>
                         </div>
                     </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">新聞中心</a>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">新聞中心</a>
                         <div class="dropdown">
-                            <a href="#" class="dropdown-item">公司新聞</a>
-                            <a href="#" class="dropdown-item">產業資訊</a>
-                            <a href="#" class="dropdown-item">活動公告</a>
+                            <a href="#" class="dropdown-link">公司新聞</a>
+                            <a href="#" class="dropdown-link">產業資訊</a>
+                            <a href="#" class="dropdown-link">活動公告</a>
                         </div>
                     </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">聯絡我們</a>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">聯絡我們</a>
                     </li>
                 </ul>
             </div>
@@ -231,38 +218,28 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const menu = document.querySelector('.menu');
-            const menuItems = document.querySelectorAll('.menu-item');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
 
-            function toggleMenu() {
-                menu.classList.toggle('active');
-            }
-
-            function handleMenuItemClick(e) {
-                if (window.innerWidth <= 768) {
-                    const menuItem = e.currentTarget;
-                    const menuLink = menuItem.querySelector('.menu-link');
-                    const dropdown = menuItem.querySelector('.dropdown');
-                    
-                    if (dropdown && e.target === menuLink) {
-                        e.preventDefault();
-                        menuItem.classList.toggle('active');
-                    }
-                }
-            }
-
-            mobileMenuBtn.addEventListener('click', toggleMenu);
-            menuItems.forEach(item => {
-                item.addEventListener('click', handleMenuItemClick);
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
             });
 
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    menu.classList.remove('active');
-                    menuItems.forEach(item => {
-                        item.classList.remove('active');
-                    });
+            // 點擊導航鏈接時關閉移動端選單
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // 點擊外部時關閉選單
+            document.addEventListener('click', function(event) {
+                const isClickInside = navMenu.contains(event.target) || hamburger.contains(event.target);
+                if (!isClickInside && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
                 }
             });
         });
