@@ -1,2 +1,2 @@
-# website-menu
-Enterprise website menu demo
+# Website Menu Demo
+A responsive enterprise website menu demonstration.
