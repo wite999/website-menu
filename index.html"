@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="企業網站導航選單">
+    <meta name="description" content="現代化企業網站導航選單">
     <title>企業網站選單</title>
     <style>
         :root {
@@ -79,7 +79,6 @@
         .menu-link:hover,
         .menu-link:focus {
             color: var(--primary-color);
-            outline: none;
         }
 
         .dropdown {
@@ -115,7 +114,6 @@
         .dropdown-item:focus {
             background-color: #f8f9fa;
             color: var(--primary-color);
-            outline: none;
         }
 
         .mobile-menu-btn {
@@ -125,13 +123,6 @@
             font-size: 24px;
             cursor: pointer;
             padding: 10px;
-            color: var(--text-color);
-        }
-
-        .mobile-menu-btn:hover,
-        .mobile-menu-btn:focus {
-            color: var(--primary-color);
-            outline: none;
         }
 
         main {
@@ -194,11 +185,11 @@
     <nav>
         <div class="container">
             <div class="nav-content">
-                <div class="logo" role="banner">企業網站</div>
-                <button class="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false">☰</button>
-                <ul class="menu" role="navigation">
+                <div class="logo">企業網站</div>
+                <button class="mobile-menu-btn" aria-label="開啟選單">☰</button>
+                <ul class="menu">
                     <li class="menu-item">
-                        <a href="#" class="menu-link" aria-haspopup="true" aria-expanded="false">關於我們</a>
+                        <a href="#" class="menu-link">關於我們</a>
                         <div class="dropdown">
                             <a href="#" class="dropdown-item">公司簡介</a>
                             <a href="#" class="dropdown-item">企業文化</a>
@@ -206,7 +197,7 @@
                         </div>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link" aria-haspopup="true" aria-expanded="false">產品服務</a>
+                        <a href="#" class="menu-link">產品服務</a>
                         <div class="dropdown">
                             <a href="#" class="dropdown-item">產品類別一</a>
                             <a href="#" class="dropdown-item">產品類別二</a>
@@ -214,7 +205,7 @@
                         </div>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link" aria-haspopup="true" aria-expanded="false">新聞中心</a>
+                        <a href="#" class="menu-link">新聞中心</a>
                         <div class="dropdown">
                             <a href="#" class="dropdown-item">公司新聞</a>
                             <a href="#" class="dropdown-item">產業資訊</a>
@@ -245,8 +236,6 @@
             const menuItems = document.querySelectorAll('.menu-item');
 
             function toggleMenu() {
-                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
                 menu.classList.toggle('active');
             }
 
@@ -259,28 +248,19 @@
                     if (dropdown && e.target === menuLink) {
                         e.preventDefault();
                         menuItem.classList.toggle('active');
-                        const isExpanded = menuLink.getAttribute('aria-expanded') === 'true';
-                        menuLink.setAttribute('aria-expanded', !isExpanded);
                     }
                 }
             }
 
             mobileMenuBtn.addEventListener('click', toggleMenu);
-            
             menuItems.forEach(item => {
                 item.addEventListener('click', handleMenuItemClick);
             });
 
-            // 添加鍵盤支援
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     menu.classList.remove('active');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     menuItems.forEach(item => {
-                        const menuLink = item.querySelector('.menu-link');
-                        if (menuLink.hasAttribute('aria-expanded')) {
-                            menuLink.setAttribute('aria-expanded', 'false');
-                        }
                         item.classList.remove('active');
                     });
                 }
